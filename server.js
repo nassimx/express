@@ -18,14 +18,15 @@ function timework(req, res, next) {
     var date = new Date();
     var today = date.getDay();
     var time = date.getHours();
-    console.log(today);
-    console.log(time);
+    // console.log(today);
+    // console.log(time);
     if (1 <= today && today <= 5 && 9 <= time && time <= 17) {
         next();
     } else {
-        res.send("Close. Come Back later");
+        res.send('<h1>We Are Closed. Come Back Later</h1>');
     }
 }
+app.use(timework);
 
 
 // app.get('/users', messages, (req, res) => {
@@ -50,6 +51,8 @@ app.get("/contactus", (req, res) => {
         err ? console.log(err) : res.send(data)
     })
 })
+
+
 const PORT = process.env.PORT || 5000
 
 const server = app.listen(PORT, (err) => err ? console.log(err) : console.log(`server running on port ${PORT}`))
